@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+  Este código es propiedad de [Juan Carlos Valverde Vita].
+  Todos los derechos reservados.
+  
+  Fecha de Creación: [Sept/2023]
+  Última Modificación: [02/11/2023]
+-->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Control | Gestión de Finanzas Personales</title>
+    <link rel="stylesheet" href="css/configuracion.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+    <header class="header" id="header">
+        <h3 class="h1">Gestión de Finanzas Personales - Soporte</h3>
+
+        <button class="btn" id="btn" id="open-sidebar-button">
+            <span class="icon">
+                <svg viewBox="0 0 175 80" width="40" height="40">
+                    <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                    <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                </svg>
+            </span>
+            <span class="text">MENU</span>
+        </button>
+
+
+    </header>
+
+    <div class="overlay">
+        <div class="loader"></div>
+    </div>
+
+    <div id="mySidebar" class="sidebar">
+        <ul class="sidebar-list">
+            <li><a href="index.html"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="resumen.html"><i class="fas fa-chart-pie"></i> Resumen Mensual</a></li>
+            <li><a href="configuracion.html"><i class="fas fa-cog"></i> Configuración</a></li>
+            <li><a href="perfil.html"><i class="fas fa-user-alt"></i> Perfil</a></li>
+            <li><a href="soporte.html"><i class="fas fa-question-circle"></i> Soporte</a></li>
+            <li><a href="login.html"><i class="	fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="container">
+
+            <main class="section">
+                <!-- Contenido para la parte izquierda de la pantalla -->
+                
+
+            </main>
+
+        </div>
+        <footer class="footer">
+            <div class="footer-block author">
+                <ul>
+                    <li><span>© CashControl 2023 | Juan Carlos Valverde Vita</span></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="js\configuracion.js"></script>
+
+
+</body>
+
+</html>
