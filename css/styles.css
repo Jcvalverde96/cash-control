@@ -1,0 +1,488 @@
+/*#######################################################################*/
+/*############################## LOADER #################################*/
+/*#######################################################################*/
+
+/* Estilos para el loader y el fondo oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que el overlay esté en la parte superior */
+}
+
+.loader {
+    /* Estilos para el loader (ajusta según tus necesidades) */
+    width: 100px;
+    height: 100px;
+    border: solid 4px rgba(231, 231, 231, 0);
+    border-top: solid 5px rgb(241, 68, 68);
+    border-radius: 50%;
+    animation: rotation_51512 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes rotation_51512 {
+    70% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.526);
+    }
+
+    90% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.04);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: rotate(360deg);
+    }
+}
+
+/*#######################################################################*/
+/*############################## GENERALES ##############################*/
+/*#######################################################################*/
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 1px;
+    position: relative;
+    top: 0;
+    margin-left: 0;
+    
+}
+
+.h1{
+    
+    text-align: center;
+}
+
+
+/*#######################################################################*/
+/*############################## CONTENIDO ##############################*/
+/*#######################################################################*/
+
+/* Estilos para el contenido principal */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between; /* Espacio entre las dos secciones */
+    align-items: flex-start; /* Alinear arriba para que ambas secciones comiencen desde la parte superior */
+    padding: 20px; /* Añade espacio alrededor del contenedor */
+    flex: 1;
+    
+ 
+}
+
+/* Estilos para la sección izquierda y derecha */
+.left-section, .right-section {
+    width: 47%; /* Ancho de ambas secciones */
+    background-color: #f5f5f5;
+    padding: 20px; /* Añade espacio alrededor del contenido de ambas secciones */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    
+}
+
+/*#######################################################################*/
+/*############################## TABLAS ##############################*/
+/*#######################################################################*/
+
+/* Estilos para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #333;
+    color: white;
+}
+
+#ingresosTotales {
+    background-color: #333;
+    color: white;
+}
+
+#gastosTotales {
+    background-color: #333;
+    color: white;
+}
+
+/* Estilos para los botones de eliminar */
+.delete-button {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 8px;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+/* Estilos para los formularios de agregar transacción y gasto */
+.add-section {
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(49%);
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.add-section h2 {
+    text-align: center;
+}
+
+#transaction-form label,
+#transaction-form input,
+#transaction-form button,
+#expense-form label,
+#expense-form input,
+#expense-form button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+   
+}
+
+#transaction-form button,
+#expense-form button {
+    background-color: #333;
+    margin-top: 30px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#transaction-form button:hover,
+#expense-form button:hover {
+    background-color: #555;
+    box-shadow: 0 0 2px 0px #646464;
+}
+
+
+/* Estilos para mensajes de error */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/*#######################################################################*/
+/*############################## GRÁFICO ##############################*/
+/*#######################################################################*/
+
+/* Estilos para el gráfico */
+#myChart {
+    margin-top: 30px; /* Agrega un margen superior al gráfico */
+    max-width: 100%; /* Haz que el gráfico se ajuste al ancho de su contenedor */
+    border: 1px solid #ddd; /* Agrega un borde al gráfico */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra al gráfico */
+}
+
+
+
+/*#######################################################################*/
+/*############################## SIDEBAR ##############################*/
+/*#######################################################################*/
+
+
+/* Estilo para el sidebar */
+.sidebar {
+    width: 0;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+
+}
+
+.btn {
+    position: absolute;
+    top: 5px;
+    left: 5px; /* Ajusta la posición izquierda según sea necesario */
+    display: block;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    width: 120px;
+    height: 45px;
+    transition: all 0.5s;
+    font-size: 16px;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: #f5f5f5;
+}
+
+
+  
+  .btn .icon {
+    position: absolute;
+    height: 20px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+
+  }
+  
+  .btn .text {
+    transform: translateX(55px);
+  }
+  
+  .btn:hover .icon {
+    width: 130px;
+  }
+  
+  .btn:hover .text {
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .btn:active .icon {
+    transform: scale(0.85);
+  }
+
+/* Estilo para la sección "content" */
+.content {
+    margin-left: 0;
+    transition: margin-left 0.5s;
+    padding: 0;
+    flex: 1;
+}
+
+/* Estilos para la lista del sidebar */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+
+}
+
+.sidebar li {
+    margin: 0px 0;
+    text-align: left;
+    
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    
+    padding: 15px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center; /* Alinea el texto verticalmente en el centro */
+}
+/* Aplica margen a los íconos para separarlos de los textos */
+.sidebar a i {
+    margin-right: 10px; /* Ajusta el valor según tu preferencia */
+}
+
+
+.sidebar a:hover {
+    background-color: #3a4651;/* Cambio de color al pasar el mouse */
+}
+
+/*#######################################################################*/
+/*############################## NOTIFICACIÓN ##############################*/
+/*#######################################################################*/
+  
+  .notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-button {
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    font-weight: bold;
+  }
+  
+  .notification {
+    border: none;
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    background-color: #34a853d6; /* Fondo verde */
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 300px; /* Limita el ancho para evitar que la notificación sea demasiado ancha */
+    text-align: right; /* Alinea el texto a la derecha */
+    
+    border-radius: 5px; 
+  }
+
+  .notification:hover{
+
+    background-color: #2da24c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Agrega una sombra sutil */
+
+
+  }
+  
+  .close-button {
+    font-size: 20px;
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    font-weight: bold;
+  }
+  
+  
+  .close-button:hover {
+    font-weight: bold;
+  }
+
+
+  /*#######################################################################*/
+/*############################## MODAL CONFIRMACIÓN ##############################*/
+/*#######################################################################*/
+
+/* Estilo para el fondo oscuro transparente */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro transparente */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #fff; /* Color de fondo del modal */
+    width: 50%; /* Ancho del modal */
+    max-width: 400px; /* Ancho máximo del modal */
+    margin: 0 auto; /* Centrar horizontalmente */
+    position: absolute;
+    top: 40%; /* Centrar verticalmente */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar vertical y horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra para el modal */
+    text-align: center;
+}
+
+/* Estilo para los botones del modal */
+.modal-button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color de texto del botón */
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Estilo para el botón de confirmación */
+.confirm-button {
+    background-color: #28a745; /* Color de fondo para confirmar */
+}
+
+/* Estilo para el botón de cancelación */
+.cancel-button {
+    background-color: #dc3545; /* Color de fondo para cancelar */
+}
+
+/* Estilo hover para los botones del modal */
+.modal-button:hover {
+    background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
+    transition: background-color 0.3s; /* Agregar una transición suave al cambio de color de fondo */
+}
+
+/* Estilo hover para el botón de confirmación */
+.confirm-button:hover {
+    background-color: #1e7e34; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+/* Estilo hover para el botón de cancelación */
+.cancel-button:hover {
+    background-color: #c82333; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+/*#######################################################################*/
+/*############################## FOOTER ##############################*/
+/*#######################################################################*/
+
+/* Estilos para el footer */
+.footer {
+    background-color: #333;
+    color: #333; /* Texto oscuro */
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+    font-size: 0.7em;
+    transition: margin-left 0.5s;
+    flex-shrink: 0; 
+}
+
+.footer span {
+    color: #f5f5f5; /* Color personalizado para el texto destacado del footer */
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer li {
+    display: inline;
+    margin: 0 10px;
+}
