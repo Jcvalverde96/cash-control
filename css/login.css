@@ -1,0 +1,111 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilos para las secciones izquierda y derecha */
+.left-section, .right-section {
+    flex: 1; /* Ambas secciones ocupan el 50% del ancho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("tu-logo.png"); /* Reemplaza "tu-logo.png" con la ruta de tu logo */
+    background-size: cover;
+    
+}
+
+.login-form {
+    margin-top: -290px;
+    padding: 20px;
+    text-align: left;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+}
+
+input {
+    font-size: 18px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button.login-button {
+    width: 110%;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 15px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.login-button:hover {
+    background-color: #555;
+}
+
+/* Estilos para el loader y el fondo oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que el overlay esté en la parte superior */
+}
+
+.loader {
+    /* Estilos para el loader (ajusta según tus necesidades) */
+    width: 100px;
+    height: 100px;
+    border: solid 4px rgba(231, 231, 231, 0);
+    border-top: solid 5px rgb(241, 68, 68);
+    border-radius: 50%;
+    animation: rotation_51512 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes rotation_51512 {
+    70% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.526);
+    }
+
+    90% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.04);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: rotate(360deg);
+    }
+}
