@@ -57,14 +57,14 @@ body {
 }
 
 .header {
-    height: 60px;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    padding: 1px;
-    position: relative;
+    position: fixed;
     top: 0;
-    margin-left: 0;
+    left: 0;
+    width: 100%;
+    background-color:rgb(73, 73, 73);
+    color: white;
+    padding: 0;
+    z-index: 1000;
     
 }
 
@@ -80,12 +80,12 @@ body {
 
 /* Estilos para el contenido principal */
 .container {
-    height: 100vh;
-    display: flex;
-    justify-content: space-between; /* Espacio entre las dos secciones */
-    align-items: flex-start; /* Alinear arriba para que ambas secciones comiencen desde la parte superior */
-    padding: 20px; /* Añade espacio alrededor del contenedor */
     flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 20px;
+    margin-top: 60px; 
     
  
 }
@@ -94,9 +94,10 @@ body {
 .left-section, .right-section {
     width: 47%; /* Ancho de ambas secciones */
     background-color: #f5f5f5;
-    padding: 20px; /* Añade espacio alrededor del contenido de ambas secciones */
+    padding: 30px; /* Añade espacio alrededor del contenido de ambas secciones */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 100vh;
+    
+    
     
 }
 
@@ -223,22 +224,22 @@ table th {
 
 /* Estilo para el sidebar */
 .sidebar {
-    width: 0;
-    position: absolute;
-    top: 0px;
+    width: 180px;
+    position: fixed;
+    top: 0;
     bottom: 0;
     left: 0;
     background-color: #333;
-    overflow-x: hidden;
     transition: 0.5s;
-    height: 100vh; /* Ocupa toda la altura de la ventana */
-
+    height: 100vh;
+    z-index: 1001;
 }
 
-.btn {
+
+/* .btn {
     position: absolute;
     top: 5px;
-    left: 5px; /* Ajusta la posición izquierda según sea necesario */
+    left: 5px; 
     display: block;
     cursor: pointer;
     font-family: Arial, sans-serif;
@@ -285,14 +286,14 @@ table th {
   
   .btn:active .icon {
     transform: scale(0.85);
-  }
+  } */
 
 /* Estilo para la sección "content" */
 .content {
-    margin-left: 0;
     transition: margin-left 0.5s;
     padding: 0;
-    flex: 1;
+    margin-left: 180px;
+    
 }
 
 /* Estilos para la lista del sidebar */
@@ -462,15 +463,16 @@ table th {
 
 /* Estilos para el footer */
 .footer {
-    background-color: #333;
-    color: #333; /* Texto oscuro */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    color: white;
     text-align: center;
     padding: 5px;
-    position: relative;
-    width: 100%;
     font-size: 0.7em;
-    transition: margin-left 0.5s;
-    flex-shrink: 0; 
+    z-index: 1000;
 }
 
 .footer span {
@@ -485,4 +487,15 @@ table th {
 .footer li {
     display: inline;
     margin: 0 10px;
+}
+
+.logoct{
+text-align: center;
+}
+
+.logoct img{
+    display: block;
+    width: 50%;
+    padding: 25px;
+    padding-bottom: 0px;
 }
