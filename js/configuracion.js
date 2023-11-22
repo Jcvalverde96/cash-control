@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loaders = document.querySelectorAll(".loader");
 
 
-    // Simula una demora de 2 segundos
+    // Simula una demora de medio segundo
     setTimeout(function () {
         overlay.style.display = "none"; // Oculta el fondo oscuro
         loaders.forEach(function (loader) {
