@@ -6,6 +6,7 @@
   Última Modificación: [16/10/2023]
 */
 
+
 function formatDate(date) {
     const day = date.getDate();
     const month = date.getMonth() + 1; // Suma 1 porque los meses comienzan en 0
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const expenseDateInput = document.getElementById('expense-date');
     const totalIngresosElement = document.getElementById('total-ingresos');
     const totalGastosElement = document.getElementById('total-gastos');
-    const chartCanvas = document.getElementById('myChart'); // Elemento del gráfico
+    // const chartCanvas = document.getElementById('myChart'); // Elemento del gráfico
 
     let saldo = 0;
     let transacciones = [];
@@ -51,32 +52,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 500); // segundos) de demora
 
 
-    // Inicialización del gráfico
-    const chartConfig = {
-        type: 'bar',
-        data: {
-            labels: ['Ingresos', 'Gastos'],
-            datasets: [{
-                data: [0, 0],
-                backgroundColor: ['#34a853', '#ea4335'],
-            }],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    };
+    // // Inicialización del gráfico
+    // const chartConfig = {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Ingresos', 'Gastos'],
+    //         datasets: [{
+    //             data: [0, 0],
+    //             backgroundColor: ['#34a853', '#ea4335'],
+    //         }],
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true,
+    //             },
+    //         },
+    //     },
+    // };
 
-    // Comprueba si hay datos de gráfico almacenados en localStorage y cárgalos
-    const chartDataStored = localStorage.getItem('chartData');
-    if (chartDataStored) {
-        chartConfig.data = JSON.parse(chartDataStored);
-    }
+    // // Comprueba si hay datos de gráfico almacenados en localStorage y cárgalos
+    // const chartDataStored = localStorage.getItem('chartData');
+    // if (chartDataStored) {
+    //     chartConfig.data = JSON.parse(chartDataStored);
+    // }
 
-    const myChart = new Chart(chartCanvas, chartConfig);
+    // const myChart = new Chart(chartCanvas, chartConfig);
 
     function actualizarSaldo() {
         saldoElement.textContent = saldo.toFixed(2) + ' €';
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         actualizarTablaTransacciones();
         actualizarGrafico();
         guardarTransaccionesEnLocalStorage();
-        showNotification("Ingreso añadido con éxito")
+        showNotification("En estos momentos CARLOS está cagando. Disculpe las molestias.")
 
 
     }
@@ -345,6 +346,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
+
+    
+
 
 
 });
