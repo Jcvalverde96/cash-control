@@ -1,0 +1,60 @@
+#### CASH CONTROL ####
+
+-- dbo.Usuarios --
+
+usu_id -> ID del usuario. Primary Key.
+usu_ema -> Email del usuario
+usu_nom -> Nombre del usuario.
+usu_ape -> Apellidos del usuario.
+usu_psw -> Contraseña del usuario.
+usu_fre -> Fecha de registro del usuario.
+
+-- dbo.Gastos --
+
+gas_id -> ID del gasto. Primary Key.
+gas_usu_id ->
+gas_usu_nom ->
+gas_usu_ape ->
+gas_des -> Descripción del gasto.
+gas_can -> Cantidad del gasto.
+gas_fech -> Fecha del gasto.
+
+-- dbo.Ingresos --
+
+ing_id -> ID del ingreso. Primary Key.
+ing_usu_id ->
+ing_usu_nom ->
+ing_usu_ape ->
+ing_des -> Descripción del ingreso.
+ing_can -> Cantidad del ingreso.
+ing_fec -> Fecha del ingreso
+
+-- dbo.Usuarios --
+CREATE TABLE dbo.Usuarios (
+    usu_id INT PRIMARY KEY,
+    usu_ema VARCHAR(255) NOT NULL,
+    usu_nom VARCHAR(50) NOT NULL,
+    usu_ape VARCHAR(50) NOT NULL,
+    usu_psw VARCHAR(255) NOT NULL, -- Asegúrate de usar hash para almacenar contraseñas
+    usu_fre DATETIME NOT NULL
+);
+
+-- dbo.Gastos --
+CREATE TABLE dbo.Gastos (
+    gas_id INT PRIMARY KEY,
+    gas_usu_id INT,
+    gas_des VARCHAR(255) NOT NULL,
+    gas_can DECIMAL(10, 2) NOT NULL,
+    gas_fech DATE NOT NULL,
+    FOREIGN KEY (gas_usu_id) REFERENCES dbo.Usuarios(usu_id)
+);
+
+-- dbo.Ingresos --
+CREATE TABLE dbo.Ingresos (
+    ing_id INT PRIMARY KEY,
+    ing_usu_id INT,
+    ing_des VARCHAR(255) NOT NULL,
+    ing_can DECIMAL(10, 2) NOT NULL,
+    ing_fec DATE NOT NULL,
+    FOREIGN KEY (ing_usu_id) REFERENCES dbo.Usuarios(usu_id)
+);
