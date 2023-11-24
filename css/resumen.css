@@ -93,7 +93,7 @@ text-align: center;
 
 /* Estilo para el sidebar */
 .sidebar {
-        width: 180px;
+    width: 180px;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -159,6 +159,7 @@ text-align: center;
     align-items: stretch;
     padding: 20px;
     margin-top: 60px; 
+    
 }
 
 /* Estilo para la sección "content" */
@@ -166,6 +167,7 @@ text-align: center;
     margin-left: 180px;
     transition: margin-left 0.5s;
     padding: 0;
+    
     
 }
 
@@ -300,7 +302,7 @@ table th {
 /*############################## SCROLLBAR ##############################*/
 /*#######################################################################*/
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 10px;
     height: 7px;
 }
 ::-webkit-scrollbar-thumb {
