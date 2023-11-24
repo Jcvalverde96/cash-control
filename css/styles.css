@@ -9,11 +9,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi transparente */
+    background: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro semi transparente */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Asegura que el overlay esté en la parte superior */
+    z-index: 9999;
+    /* Asegura que el overlay esté en la parte superior */
 }
 
 .loader {
@@ -53,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
+
 }
 
 .header {
@@ -61,15 +63,15 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color:rgb(73, 73, 73);
+    background-color: rgb(73, 73, 73);
     color: white;
     padding: 0;
     z-index: 1000;
-    
+
 }
 
-.h1{
-    
+.h1 {
+
     text-align: center;
 }
 
@@ -78,29 +80,56 @@ body {
 /*############################## CONTENIDO ##############################*/
 /*#######################################################################*/
 
-/* Estilos para el contenido principal */
-.container {
-    flex: 1;
+
+/* Estilo para la sección "content" */
+.content {
+    
+    margin-left: 180px;
     display: flex;
+    flex-wrap: wrap;  /* Permite que los elementos flexibles se envuelvan en una nueva línea si no hay espacio suficiente */
     justify-content: space-between;
     align-items: stretch;
-    padding: 80px;
-    margin-top: 60px; 
-    margin: 10px;
-    
- 
+    padding: 20px;
+    margin-top: 60px;
 }
 
+
 /* Estilos para la sección izquierda y derecha */
-.left-section, .right-section {
-    width: 100%; /* Ancho de ambas secciones */
-    background-color: #f5f5f5;
-    padding: 50px; /* Añade espacio alrededor del contenido de ambas secciones */
+.left-section,
+.right-section {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    
-    
-    
+    width: calc(50% - 0px);  /* Ancho del 50% con un pequeño espacio entre las secciones */
+    box-sizing: border-box;
+    margin-bottom: 30px;  /* Espacio entre las secciones */
 }
+
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 10%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff; /* Cambia el color de fondo según tu preferencia */
+    color: #333; /* Cambia el color del texto según tu preferencia */
+    font-size: 16px; /* Cambia el tamaño de fuente según tu preferencia */
+    transition: border-color 0.3s ease;
+}
+
 
 /*#######################################################################*/
 /*############################## TABLAS ##############################*/
@@ -115,10 +144,12 @@ table {
 }
 
 
-table th, table td {
+table th,
+table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    background-color: white;
 }
 
 table th {
@@ -155,13 +186,15 @@ table th {
 /* Estilos para los formularios de agregar transacción y gasto */
 .add-section {
     background-color: #f5f5f5;
-    padding: 50px;
+    padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: calc(49%);
+    width: 100%;  /* Ancho del 100% para ocupar todo el espacio disponible en la sección izquierda y derecha */
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
 }
+
+
 
 .add-section h2 {
     text-align: center;
@@ -169,14 +202,12 @@ table th {
 
 #transaction-form label,
 #transaction-form input,
-#transaction-form button,
 #expense-form label,
-#expense-form input,
-#expense-form button {
+#expense-form input{
     display: block;
     margin-bottom: 10px;
-    width: 100%;
-   
+    width: 95%;
+
 }
 
 #transaction-form button,
@@ -188,6 +219,7 @@ table th {
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
+    width: 100%;
 }
 
 #transaction-form button:hover,
@@ -203,20 +235,6 @@ table th {
     text-align: center;
     margin-top: 10px;
 }
-
-/*#######################################################################*/
-/*############################## GRÁFICO ##############################*/
-/*#######################################################################*/
-
-/* Estilos para el gráfico */
-#myChart {
-    margin-top: 30px; /* Agrega un margen superior al gráfico */
-    max-width: 100%; /* Haz que el gráfico se ajuste al ancho de su contenedor */
-    border: 1px solid #ddd; /* Agrega un borde al gráfico */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra al gráfico */
-}
-
-
 
 /*#######################################################################*/
 /*############################## SIDEBAR ##############################*/
@@ -237,65 +255,6 @@ table th {
 }
 
 
-/* .btn {
-    position: absolute;
-    top: 5px;
-    left: 5px; 
-    display: block;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    width: 120px;
-    height: 45px;
-    transition: all 0.5s;
-    font-size: 16px;
-    border: none;
-    display: flex;
-    align-items: center;
-    background-color: #333;
-    color: #f5f5f5;
-}
-
-
-  
-  .btn .icon {
-    position: absolute;
-    height: 20px;
-    width: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s;
-
-  }
-  
-  .btn .text {
-    transform: translateX(55px);
-  }
-  
-  .btn:hover .icon {
-    width: 130px;
-  }
-  
-  .btn:hover .text {
-    transition: all 0.5s;
-    opacity: 0;
-  }
-  
-  .btn:focus {
-    outline: none;
-  }
-  
-  .btn:active .icon {
-    transform: scale(0.85);
-  } */
-
-/* Estilo para la sección "content" */
-.content {
-    transition: margin-left 0.5s;
-    padding: 0;
-    margin-left: 180px;
-    
-}
 
 /* Estilos para la lista del sidebar */
 .sidebar ul {
@@ -307,7 +266,7 @@ table th {
 .sidebar li {
     margin: 0px 0;
     text-align: left;
-    
+
 }
 
 .sidebar a {
@@ -318,21 +277,25 @@ table th {
     background-color: #333;
     transition: background-color 0.3s ease;
     display: flex;
-    align-items: center; /* Alinea el texto verticalmente en el centro */
+    align-items: center;
+    /* Alinea el texto verticalmente en el centro */
 }
+
 /* Aplica margen a los íconos para separarlos de los textos */
 .sidebar a i {
-    margin-right: 10px; /* Ajusta el valor según tu preferencia */
+    margin-right: 10px;
+    /* Ajusta el valor según tu preferencia */
 }
 
 
 .sidebar a:hover {
-    background-color: rgb(255, 204, 84);/* Cambio de color al pasar el mouse */
+    background-color: rgb(255, 204, 84);
+    /* Cambio de color al pasar el mouse */
     color: #333;
     font-weight: bold;
 }
 
-#inicio{
+#inicio {
     background-color: rgb(246, 181, 29);
     color: #333;
 }
@@ -342,64 +305,67 @@ table th {
 /*#######################################################################*/
 /*############################## NOTIFICACIÓN ##############################*/
 /*#######################################################################*/
-  
-  .notification-content {
+
+.notification-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .close-button {
+}
+
+.close-button {
     cursor: pointer;
-  }
-  
-  .close-button:hover {
+}
+
+.close-button:hover {
     font-weight: bold;
-  }
-  
-  .notification {
+}
+
+.notification {
     border: none;
     display: none;
     position: absolute;
     top: 70px;
     right: 16px;
-    background-color: #34a853d6; /* Fondo verde */
+    background-color: #34a853d6;
+    /* Fondo verde */
     color: white;
     padding: 10px;
     z-index: 1000;
-    max-width: 300px; /* Limita el ancho para evitar que la notificación sea demasiado ancha */
-    text-align: right; /* Alinea el texto a la derecha */
-    
-    border-radius: 5px; 
-  }
+    max-width: 300px;
+    /* Limita el ancho para evitar que la notificación sea demasiado ancha */
+    text-align: right;
+    /* Alinea el texto a la derecha */
+    border-radius: 5px;
+}
 
-  .notification:hover{
+.notification:hover {
 
     background-color: #2da24c;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Agrega una sombra sutil */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    /* Agrega una sombra sutil */
 
 
-  }
-  
-  .close-button {
+}
+
+.close-button {
     font-size: 20px;
     position: absolute;
     top: 3px;
     right: 8px;
     cursor: pointer;
-  }
-  
-  .close-button:hover {
+}
+
+.close-button:hover {
     font-weight: bold;
-  }
-  
-  
-  .close-button:hover {
-    font-weight: bold;
-  }
+}
 
 
-  /*#######################################################################*/
+.close-button:hover {
+    font-weight: bold;
+}
+
+
+/*#######################################################################*/
 /*############################## MODAL CONFIRMACIÓN ##############################*/
 /*#######################################################################*/
 
@@ -411,22 +377,30 @@ table th {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro transparente */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro transparente */
 }
 
 /* Estilo para el contenido del modal */
 .modal-content {
-    background-color: #fff; /* Color de fondo del modal */
-    width: 50%; /* Ancho del modal */
-    max-width: 400px; /* Ancho máximo del modal */
-    margin: 0 auto; /* Centrar horizontalmente */
+    background-color: #fff;
+    /* Color de fondo del modal */
+    width: 50%;
+    /* Ancho del modal */
+    max-width: 400px;
+    /* Ancho máximo del modal */
+    margin: 0 auto;
+    /* Centrar horizontalmente */
     position: absolute;
-    top: 40%; /* Centrar verticalmente */
+    top: 40%;
+    /* Centrar verticalmente */
     left: 50%;
-    transform: translate(-50%, -50%); /* Centrar vertical y horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Centrar vertical y horizontalmente */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra para el modal */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Sombra para el modal */
     text-align: center;
 }
 
@@ -435,49 +409,59 @@ table th {
     margin: 10px;
     padding: 10px 20px;
     border: none;
-    background-color: #007bff; /* Color de fondo del botón */
-    color: #fff; /* Color de texto del botón */
+    background-color: #007bff;
+    /* Color de fondo del botón */
+    color: #fff;
+    /* Color de texto del botón */
     cursor: pointer;
     border-radius: 5px;
 }
 
 /* Estilo para el botón de confirmación */
 .confirm-button {
-    background-color: #28a745; /* Color de fondo para confirmar */
+    background-color: #28a745;
+    /* Color de fondo para confirmar */
 }
 
 /* Estilo para el botón de cancelación */
 .cancel-button {
-    background-color: #dc3545; /* Color de fondo para cancelar */
+    background-color: #dc3545;
+    /* Color de fondo para cancelar */
 }
 
 /* Estilo hover para los botones del modal */
 .modal-button:hover {
-    background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
-    transition: background-color 0.3s; /* Agregar una transición suave al cambio de color de fondo */
+    background-color: #0056b3;
+    /* Cambiar el color de fondo al pasar el cursor */
+    transition: background-color 0.3s;
+    /* Agregar una transición suave al cambio de color de fondo */
 }
 
 /* Estilo hover para el botón de confirmación */
 .confirm-button:hover {
-    background-color: #1e7e34; /* Cambiar el color de fondo al pasar el cursor */
+    background-color: #1e7e34;
+    /* Cambiar el color de fondo al pasar el cursor */
 }
 
 /* Estilo hover para el botón de cancelación */
 .cancel-button:hover {
-    background-color: #c82333; /* Cambiar el color de fondo al pasar el cursor */
+    background-color: #c82333;
+    /* Cambiar el color de fondo al pasar el cursor */
 }
 
 /*#######################################################################*/
 /*############################## SCROLLBAR ##############################*/
 /*#######################################################################*/
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 10px;
     height: 7px;
 }
+
 ::-webkit-scrollbar-thumb {
     border-radius: 0;
     background: rgb(246, 181, 29);
 }
+
 ::-webkit-scrollbar-track {
     border-radius: 0;
 }
@@ -486,10 +470,12 @@ table th {
     width: 7px;
     height: 7px;
 }
+
 ::-moz-scrollbar-thumb {
     border-radius: 0;
     background: rgb(246, 181, 29);
 }
+
 ::-moz-scrollbar-track {
     border-radius: 0;
 }
@@ -513,7 +499,8 @@ table th {
 }
 
 .footer span {
-    color: #f5f5f5; /* Color personalizado para el texto destacado del footer */
+    color: #f5f5f5;
+    /* Color personalizado para el texto destacado del footer */
 }
 
 .footer ul {
@@ -526,14 +513,14 @@ table th {
     margin: 0 10px;
 }
 
-.logoct{
-text-align: center;
+.logoct {
+    text-align: center;
 }
 
-.logoct img{
+.logoct img {
     display: block;
     width: 50%;
     padding: 25px;
     padding-bottom: 5px;
-    
+
 }
