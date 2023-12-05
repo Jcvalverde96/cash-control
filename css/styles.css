@@ -91,6 +91,7 @@ body {
     align-items: stretch;
     padding: 20px;
     margin-top: 60px;
+    margin-bottom: 50px;
 }
 
 
@@ -284,6 +285,7 @@ table th {
 /* Aplica margen a los íconos para separarlos de los textos */
 .sidebar a i {
     margin-right: 10px;
+    
     /* Ajusta el valor según tu preferencia */
 }
 
@@ -295,9 +297,29 @@ table th {
     font-weight: bold;
 }
 
-#inicio {
-    background-color: rgb(246, 181, 29);
-    color: #333;
+.submenu a{
+    background-color: #555;
+    color: white;
+    font-size: 14px;
+    
+    /* display: none; */
+}
+
+
+.submenu a:hover{
+    background-color: rgb(251, 207, 103);
+
+}
+
+/* Añade reglas CSS para el submenú oculto y la rotación de la flecha */
+.submenu {
+    display: none;
+    
+}
+
+.sidebar a i.rotate {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
 }
 
 
@@ -310,6 +332,7 @@ table th {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .close-button {
