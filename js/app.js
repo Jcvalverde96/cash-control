@@ -1,34 +1,15 @@
-
-function formatDate(date) {
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Suma 1 porque los meses comienzan en 0
-    const year = date.getFullYear();
-
-    const formattedDay = day < 10 ? '0' + day : day;
-    const formattedMonth = month < 10 ? '0' + month : month;
-
-    return formattedDay + '/' + formattedMonth + '/' + year;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const saldoElement = document.getElementById('ahorro');
-    const transactionList = document.getElementById('transaction-list');
-    const transactionForm = document.getElementById('transaction-form');
-    const descriptionInput = document.getElementById('description');
-    const amountInput = document.getElementById('amount');
-    const transactionDateInput = document.getElementById('transaction-date');
-    const expenseForm = document.getElementById('expense-form');
-    const expenseDescriptionInput = document.getElementById('expense-description');
-    const expenseAmountInput = document.getElementById('expense-amount');
-    const expenseDateInput = document.getElementById('expense-date');
-    const totalIngresosElement = document.getElementById('total-ingresos');
-    const totalGastosElement = document.getElementById('total-gastos');
-
-    let saldo = 0;
-    let transacciones = [];
-
+document.addEventListener("DOMContentLoaded", function () {
+    // Obtenemos referencias a los elementos del DOM
+    const transactionForm = document.getElementById("transaction-form");
+    const expenseForm = document.getElementById("expense-form");
+    const transactionList = document.getElementById("transaction-list");
+    const totalIngresosElement = document.getElementById("total-ingresos");
+    const totalGastosElement = document.getElementById("total-gastos");
+    const ahorroElement = document.getElementById("ahorro");
     const overlay = document.querySelector(".overlay");
     const loaders = document.querySelectorAll(".loader, .loader2");
+
+    // Función de Loader
 
     setTimeout(function () {
         overlay.style.display = "none";
@@ -38,179 +19,223 @@ document.addEventListener('DOMContentLoaded', function () {
         content.style.display = "block";
     }, 500);
 
-    function actualizarSaldo() {
-        saldoElement.textContent = saldo.toFixed(2) + ' €';
+    // Función para formatear la fecha en formato dd/mm/aa
+    function formatearFecha(fecha) {
+        const date = new Date(fecha);
+        const dia = date.getDate().toString().padStart(2, '0');
+        const mes = (date.getMonth() + 1).toString().padStart(2, '0'); // Los meses comienzan desde 0
+        const año = date.getFullYear().toString().slice(2);
+
+        return `${dia}/${mes}/${año}`;
     }
 
-    function calcularTotales() {
-        let totalIngresos = 0;
-        let totalGastos = 0;
 
-        transacciones.forEach(function (transaccion) {
-            if (transaccion.monto > 0) {
-                totalIngresos += transaccion.monto;
-            } else {
-                totalGastos -= transaccion.monto;
-            }
-        });
+    // Array para almacenar transacciones
+    const transactions = [];
 
-        totalIngresosElement.textContent = totalIngresos.toFixed(2) + ' €';
-        totalGastosElement.textContent = totalGastos.toFixed(2) + ' €';
-    }
+    // Función para actualizar la tabla de transacciones
+    function updateTransactionTable() {
+        // Limpiamos la tabla antes de actualizarla
+        transactionList.innerHTML = "";
 
-    function agregarTransaccion(descripcion, monto, fecha, tipo) {
-        const transaccion = {
-            tipo: tipo,
-            descripcion: descripcion,
-            monto: monto,
-            fecha: formatDate(fecha),
-        };
-        transacciones.push(transaccion);
-        saldo += monto;
-        actualizarSaldo();
-        calcularTotales();
-        actualizarTablaTransacciones();
-        actualizarGrafico();
-        guardarTransaccionesEnLocalStorage();
-        showNotification("En estos momentos CARLOS está cagando. Disculpe las molestias.");
-    }
-
-    function agregarGasto(descripcion, monto, fecha, tipo) {
-        agregarTransaccion(descripcion, -monto, fecha, tipo);
-        showNotification("Gasto añadido con éxito");
-    }
-
-    function eliminarTransaccion(index) {
-        const transaccion = transacciones[index];
-        if (transaccion) {
-            saldo -= transaccion.monto;
-            transacciones.splice(index, 1);
-            actualizarSaldo();
-            calcularTotales();
-            actualizarTablaTransacciones();
-            actualizarGrafico();
-            guardarTransaccionesEnLocalStorage();
-        }
-    }
-
-    function actualizarTablaTransacciones() {
-        transactionList.innerHTML = '';
-        transacciones.forEach(function (transaccion, index) {
-            const row = document.createElement('tr');
-            const tipo = transaccion.tipo === 'I' ? 'Ingreso' : 'Gasto';
-            const tipoBackgroundColor = transaccion.tipo === 'I' ? '#34A853' : '#EA4335';
+        // Iteramos sobre las transacciones y las agregamos a la tabla
+        transactions.forEach(function (transaction) {
+            const row = document.createElement("tr");
             row.innerHTML = `
-                <td style="background-color: ${tipoBackgroundColor}; color: white;">${tipo}</td>
-                <td>${transaccion.descripcion}</td>
-                <td>${transaccion.monto.toFixed(2)} €</td>
-                <td>${transaccion.fecha}</td>
-                <td><button class="delete-button" data-index="${index}" title="Eliminar Transacción"><i class="fas fa-trash-alt"></i> </button></td>
-            `;
+          <td>${transaction.tipo}</td>
+          <td>${transaction.descripcion}</td>
+          <td>${transaction.cantidad} €</td>
+          <td>${transaction.fecha}</td>
+          <td>
+            <button class="delete-button" onclick="eliminarTransaccion(${transaction.id})"><i class='fas fa-trash-alt'></i></button>
+          </td>
+        `;
             transactionList.appendChild(row);
         });
 
-        setDeleteButtonListeners();
+        // Actualizamos los totales
+        updateTotals();
     }
 
-    const confirmationModal = document.getElementById('confirmationModal');
-    const confirmDeleteButton = document.getElementById('confirmDelete');
-    const cancelDeleteButton = document.getElementById('cancelDelete');
-    let deletingIndex = -1;
+    // Función para actualizar los totales de ingresos, gastos y ahorro
+    function updateTotals() {
+        let totalIngresos = 0;
+        let totalGastos = 0;
 
-    function setDeleteButtonListeners() {
-        const deleteButtons = document.querySelectorAll('.delete-button');
-        deleteButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                const index = button.getAttribute('data-index');
-                deletingIndex = parseInt(index);
-                showDeleteConfirmation();
-            });
-        });
-    }
-
-    function showDeleteConfirmation() {
-        confirmationModal.style.display = 'block';
-    }
-
-    cancelDeleteButton.addEventListener('click', function () {
-        confirmationModal.style.display = 'none';
-        deletingIndex = -1;
-    });
-
-    confirmDeleteButton.addEventListener('click', function () {
-        if (deletingIndex >= 0) {
-            eliminarTransaccion(deletingIndex);
-            confirmationModal.style.display = 'none';
-            deletingIndex = -1;
-        }
-    });
-
-    function guardarTransaccionesEnLocalStorage() {
-        localStorage.setItem('transacciones', JSON.stringify(transacciones));
-    }
-
-    function cargarTransaccionesDesdeLocalStorage() {
-        const transaccionesGuardadas = localStorage.getItem('transacciones');
-        if (transaccionesGuardadas) {
-            transacciones = JSON.parse(transaccionesGuardadas);
-            saldo = 0;
-            transacciones.forEach(function (transaccion) {
-                saldo += transaccion.monto;
-            });
-        }
-    }
-
-    cargarTransaccionesDesdeLocalStorage();
-    actualizarSaldo();
-    calcularTotales();
-    actualizarTablaTransacciones();
-
-    transactionForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const descripcion = descriptionInput.value;
-        const monto = parseFloat(amountInput.value);
-        const fecha = new Date(transactionDateInput.value);
-        const tipo = 'I';
-        if (isNaN(monto)) {
-            alert('Por favor, ingrese un monto válido.');
-            return;
-        }
-        agregarTransaccion(descripcion, monto, fecha, tipo);
-        descriptionInput.value = '';
-        amountInput.value = '';
-        transactionDateInput.value = '';
-    });
-
-    expenseForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const descripcion = expenseDescriptionInput.value;
-        const monto = parseFloat(expenseAmountInput.value);
-        const fecha = new Date(expenseDateInput.value);
-        const tipo = 'G';
-        if (isNaN(monto)) {
-            alert('Por favor, ingrese un monto válido.');
-            return;
-        }
-        agregarGasto(descripcion, monto, fecha, tipo);
-        expenseDescriptionInput.value = '';
-        expenseAmountInput.value = '';
-        expenseDateInput.value = '';
-    });
-
-    function showNotification(message) {
-        const notification = document.getElementById('notification');
-        const notificationMessage = document.getElementById('notification-message');
-        const closeButton = document.getElementById('close-button');
-
-        notificationMessage.textContent = message;
-        notification.style.display = 'block';
-
-        closeButton.addEventListener('click', () => {
-            notification.style.display = 'none';
+        // Calculamos los totales sumando los ingresos y restando los gastos
+        transactions.forEach(function (transaction) {
+            if (transaction.tipo === "Ingreso") {
+                totalIngresos += transaction.cantidad;
+            } else {
+                totalGastos += transaction.cantidad;
+            }
         });
 
-        setTimeout(() => {
-            notification.style.display = 'none';
+        // Calculamos el ahorro restando los gastos totales de los ingresos totales
+        const ahorro = totalIngresos - totalGastos;
+
+        // Actualizamos los elementos en el DOM
+        totalIngresosElement.textContent = `${totalIngresos} €`;
+        totalGastosElement.textContent = `${totalGastos} €`;
+        ahorroElement.textContent = `${ahorro} €`;
+    }
+
+    // Función para agregar una transacción con notificación
+    function agregarTransaccionConNotificacion(tipo, descripcion, cantidad, fecha) {
+        const nuevaTransaccion = {
+            id: transactions.length + 1,
+            tipo: tipo,
+            descripcion: descripcion,
+            cantidad: parseFloat(cantidad),
+            fecha: formatearFecha(fecha), // Formateamos la fecha usando la nueva función
+        };
+
+        // Agregamos la transacción al array
+        transactions.push(nuevaTransaccion);
+
+        // Actualizamos la tabla y los totales
+        updateTransactionTable();
+
+        // Mostramos la notificación
+        mostrarNotificacion(`${tipo} agregado con éxito.`);
+    }
+
+    // Función para mostrar la notificación con icono y cerrar al hacer clic
+    function mostrarNotificacion(mensaje) {
+        const notificationElement = document.getElementById("notification");
+        const notificationMessageElement = document.getElementById("notification-message");
+
+        // Cambiamos el mensaje de la notificación con el icono
+        notificationMessageElement.innerHTML = `<i class="fa fa-check"></i> ${mensaje}`;
+
+        // Mostramos la notificación
+        notificationElement.style.display = "block";
+
+        // Ocultamos la notificación después de 5 segundos
+        setTimeout(function () {
+            ocultarNotificacion();
         }, 5000);
+
+        // Agregamos un evento de clic para cerrar la notificación al hacer clic en ella
+        notificationElement.addEventListener("click", function () {
+            ocultarNotificacion();
+        });
     }
+
+    // Función para ocultar la notificación
+    function ocultarNotificacion() {
+        const notificationElement = document.getElementById("notification");
+        // Ocultamos la notificación
+        notificationElement.style.display = "none";
+    }
+
+
+
+
+
+
+    // Modificamos la función agregarTransaccion para utilizar agregarTransaccionConNotificacion
+    function agregarTransaccion(tipo, descripcion, cantidad, fecha) {
+        agregarTransaccionConNotificacion(tipo, descripcion, cantidad, fecha);
+
+        // Limpiamos el formulario
+        if (tipo === "Ingreso") {
+            transactionForm.reset();
+        } else {
+            expenseForm.reset();
+        }
+    }
+
+
+    // Función para eliminar una transacción
+    window.eliminarTransaccion = function (id) {
+        // Filtramos la transacción con el ID especificado
+        const transaccionAEliminar = transactions.find((transaction) => transaction.id === id);
+
+        // Eliminamos la transacción del array
+        transactions.splice(transactions.indexOf(transaccionAEliminar), 1);
+
+        // Actualizamos la tabla y los totales
+        updateTransactionTable();
+    };
+
+    // Manejador de eventos para el formulario de ingresos
+    transactionForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const tipo = "Ingreso";
+        const descripcion = document.getElementById("description").value;
+        const cantidad = document.getElementById("amount").value;
+        const fecha = document.getElementById("transaction-date").value;
+
+        // Verificamos que la cantidad sea un número válido
+        if (!isNaN(parseFloat(cantidad))) {
+            agregarTransaccion(tipo, descripcion, cantidad, fecha);
+
+            // Limpiamos el formulario
+            transactionForm.reset();
+        } else {
+            alert("Por favor, ingrese una cantidad válida.");
+        }
+    });
+
+    // Manejador de eventos para el formulario de gastos
+    expenseForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const tipo = "Gasto";
+        const descripcion = document.getElementById("expense-description").value;
+        const cantidad = document.getElementById("expense-amount").value;
+        const fecha = document.getElementById("expense-date").value;
+
+        // Verificamos que la cantidad sea un número válido
+        if (!isNaN(parseFloat(cantidad))) {
+            agregarTransaccion(tipo, descripcion, cantidad, fecha);
+
+            // Limpiamos el formulario
+            expenseForm.reset();
+        } else {
+            alert("Por favor, ingrese una cantidad válida.");
+        }
+    });
+
+    // Obtén el nombre de la página actual
+    var currentPage = window.location.pathname.split("/").pop();
+
+    // Verifica si la página actual es "inicio.html"
+    if (currentPage === "index.html") {
+        // Si es así, cambia el fondo del elemento con id "inicio"
+        document.getElementById("inicio").style.backgroundColor = "rgb(246, 181, 29)";
+        document.getElementById("inicio").style.color = "#333";
+    };
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  SUBMENU  /////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Obtiene el elemento del enlace "Configuración"
+    var configLink = document.getElementById('configuracion');
+
+    // Añade un event listener para el clic en "Configuración"
+    configLink.addEventListener('click', function (event) {
+        // Evita el comportamiento predeterminado del enlace
+        event.preventDefault();
+
+        // Obtiene el elemento del submenú
+        var submenu = document.querySelector('.submenu');
+
+        // Cambia la propiedad de visibilidad del submenú
+        submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+        submenu.style.backgroundColor = '#ffffff';
+
+
+        // Obtiene el elemento del ícono de flecha
+        var cogIcon = configLink.querySelector('.material-icons');
+
+        // Cambia la clase de rotación del ícono de flecha
+        cogIcon.classList.toggle('rotate');
+    });
+    
 });
