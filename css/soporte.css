@@ -1,0 +1,232 @@
+/*#######################################################################*/
+/*############################## LOADER #################################*/
+/*#######################################################################*/
+
+/* Estilos para el loader y el fondo oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro semi transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Asegura que el overlay esté en la parte superior */
+}
+
+.loader {
+    /* Estilos para el loader (ajusta según tus necesidades) */
+    width: 100px;
+    height: 100px;
+    border: solid 4px rgba(231, 231, 231, 0);
+    border-top: solid 5px rgb(241, 68, 68);
+    border-radius: 50%;
+    animation: rotation_51512 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes rotation_51512 {
+    70% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.526);
+    }
+
+    90% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.04);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: rotate(360deg);
+    }
+}
+
+/*#######################################################################*/
+/*############################## GENERALES ##############################*/
+/*#######################################################################*/
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    color: white;
+    padding: 0;
+    z-index: 1000;
+
+}
+
+.logoct {
+    text-align: center;
+}
+
+.logoct img {
+    display: block;
+    width: 50%;
+    padding: 25px;
+    padding-bottom: 5px;
+
+}
+
+.h1 {
+
+    text-align: center;
+}
+
+/*#######################################################################*/
+/*############################## SIDEBAR #################################*/
+/*#######################################################################*/
+
+/* Estilo para el sidebar */
+.sidebar {
+    width: 180px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    transition: 0.5s;
+    height: 100vh;
+    z-index: 1001;
+}
+
+
+
+/* Estilos para la lista del sidebar */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+
+}
+
+.sidebar li {
+    margin: 0px 0;
+    text-align: left;
+
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #333;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    /* Alinea el texto verticalmente en el centro */
+}
+
+/* Aplica margen a los íconos para separarlos de los textos */
+.sidebar a i {
+    margin-right: 10px;
+    /* Ajusta el valor según tu preferencia */
+}
+
+
+.sidebar a:hover {
+    background-color: rgb(255, 204, 84);/* Cambio de color al pasar el mouse */
+    color: #333;
+    font-weight: bold;
+}
+
+.submenu a{
+    background-color: #555;
+    color: white;
+    font-size: 14px;
+    /* display: none; */
+}
+
+
+.submenu a:hover{
+    background-color: rgb(251, 207, 103);
+
+}
+
+/* Añade reglas CSS para el submenú oculto y la rotación de la flecha */
+.submenu {
+    display: none;
+}
+
+.sidebar a i.rotate {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
+}
+
+/*#######################################################################*/
+/*############################## SCROLLBAR ##############################*/
+/*#######################################################################*/
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: rgb(246, 181, 29);
+}
+::-webkit-scrollbar-track {
+    border-radius: 0;
+}
+
+::-moz-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-moz-scrollbar-thumb {
+    border-radius: 0;
+    background: rgb(246, 181, 29);
+}
+::-moz-scrollbar-track {
+    border-radius: 0;
+}
+
+
+
+/*#######################################################################*/
+/*############################## FOOTER #################################*/
+/*#######################################################################*/
+
+/* Estilos para el footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 0.7em;
+    z-index: 1000;
+}
+
+.footer span {
+    color: #f5f5f5;
+    /* Color personalizado para el texto destacado del footer */
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer li {
+    display: inline;
+    margin: 0 10px;
+}
