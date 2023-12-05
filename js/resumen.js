@@ -47,8 +47,39 @@ document.addEventListener('DOMContentLoaded', function () {
     const myChart = new Chart(chartCanvas, chartConfig);
 
     ///////////////////////////////////////////////////////////////////////////
-    //////////////////////////    /////////////////////////////////////
+    //////////////////////////  SIDEBAR A  /////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
+    // Obtén el nombre de la página actual
+    var currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === "resumen.html") {
 
+        document.getElementById("resumen").style.backgroundColor = "rgb(246, 181, 29)";
+        document.getElementById("resumen").style.color = "#333";
+    }
+
+        ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  SUBMENU  /////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Obtiene el elemento del enlace "Configuración"
+    var configLink = document.getElementById('configuracion');
+
+    // Añade un event listener para el clic en "Configuración"
+    configLink.addEventListener('click', function (event) {
+        // Evita el comportamiento predeterminado del enlace
+        event.preventDefault();
+
+        // Obtiene el elemento del submenú
+        var submenu = document.querySelector('.submenu');
+
+        // Cambia la propiedad de visibilidad del submenú
+        submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+
+        // Obtiene el elemento del ícono de flecha
+        var cogIcon = configLink.querySelector('.material-icons');
+
+        // Cambia la clase de rotación del ícono de flecha
+        cogIcon.classList.toggle('rotate');
+    });
 });
