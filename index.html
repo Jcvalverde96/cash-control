@@ -63,7 +63,8 @@
             <li><a href="resumen.html" id="resumen"><i class="fas fa-chart-pie"></i> Resumen Mensual</a></li>
             <li><a href="perfil.html" id="perfil"><i class="fas fa-user-alt"></i> Perfil</a></li>
             <li>
-                <a href="#" id="configuracion"><i class="fas fa-cog"></i> Configuración <i class="material-icons">keyboard_arrow_right</i></i></a>
+                <a href="#" id="configuracion"><i class="fas fa-cog"></i> Configuración <i
+                        class="material-icons">keyboard_arrow_right</i></i></a>
 
                 <ul class="submenu">
                     <li><a href="usuarios.html" id="usuarios"><i class="fas fa-users"></i> Usuarios</a></li>
@@ -77,6 +78,7 @@
     </div>
 
     <!-- CONTENIDO -->
+
     <div class="content">
 
         <main class="left-section">
@@ -90,7 +92,13 @@
                     <input type="number" id="amount" step="0.01" required>
                     <label for="transaction-date">Fecha:</label>
                     <input type="date" id="transaction-date" required>
-                    <button type="submit" title="Añadir Ingreso">Agregar</button>
+
+                    <div class="botonesFiltro">
+                        <button type="submit" class="consultarBoton" title="Añadir ingreso">
+                            <i class='fa fa-plus'></i> Añadir
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </main>
@@ -106,13 +114,18 @@
                     <input type="number" id="expense-amount" step="0.01" required>
                     <label for="expense-date">Fecha:</label>
                     <input type="date" id="expense-date" required>
-                    <button type="submit" title="Añadir Gasto">Agregar</button>
+                    <div class="botonesFiltro">
+                        <button type="submit" class="consultarBoton" title="Añadir gasto">
+                            <i class='fa fa-plus'></i> Añadir
+                        </button>
+                    </div>
                 </form>
             </div>
         </main>
 
         <main class="left-section">
             <div class="add-section" id="add-expense">
+                <h2>Resumen</h2>
                 <table>
                     <thead>
                         <tr>
@@ -145,6 +158,8 @@
 
         <main class="left-section">
             <div class="add-section" id="add-expense">
+
+                <h2>Transacciones</h2>
 
                 <table>
                     <thead>
