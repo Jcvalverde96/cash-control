@@ -80,7 +80,6 @@ body {
 /*############################## CONTENIDO ##############################*/
 /*#######################################################################*/
 
-
 /* Estilo para la sección "content" */
 .content {
     
@@ -98,10 +97,9 @@ body {
 /* Estilos para la sección izquierda y derecha */
 .left-section,
 .right-section {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     width: calc(50% - 0px);  /* Ancho del 50% con un pequeño espacio entre las secciones */
     box-sizing: border-box;
-    margin-bottom: 30px;  /* Espacio entre las secciones */
 }
 
 form {
@@ -130,6 +128,30 @@ input {
     font-size: 16px; /* Cambia el tamaño de fuente según tu preferencia */
     transition: border-color 0.3s ease;
 }
+
+.consultarBoton {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    margin-right: 12px;
+}
+
+#transaction-form button:hover {
+    background-color: #555;
+
+}
+
+#expense-form button:hover {
+    background-color: #555;
+
+}
+
 
 
 /*#######################################################################*/
@@ -186,9 +208,9 @@ table th {
 
 /* Estilos para los formularios de agregar transacción y gasto */
 .add-section {
-    background-color: #f5f5f5;
+    background-color: white;
     padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     width: 100%;  /* Ancho del 100% para ocupar todo el espacio disponible en la sección izquierda y derecha */
     display: inline-block;
     vertical-align: top;
@@ -198,7 +220,7 @@ table th {
 
 
 .add-section h2 {
-    text-align: center;
+    text-align: left;
 }
 
 #transaction-form label,
@@ -211,7 +233,7 @@ table th {
 
 }
 
-#transaction-form button,
+/* #transaction-form button,
 #expense-form button {
     background-color: #333;
     margin-top: 30px;
@@ -221,13 +243,13 @@ table th {
     padding: 10px;
     cursor: pointer;
     width: 100%;
-}
+} */
 
-#transaction-form button:hover,
+/* #transaction-form button:hover,
 #expense-form button:hover {
     background-color: #555;
     box-shadow: 0 0 2px 0px #646464;
-}
+} */
 
 
 /* Estilos para mensajes de error */
