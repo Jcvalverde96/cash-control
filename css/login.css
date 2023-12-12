@@ -12,7 +12,7 @@ body {
 }
 
 /* Estilos para las secciones izquierda y derecha */
-.left-section, .right-section {
+.right-section {
     flex: 1; /* Ambas secciones ocupan el 50% del ancho */
     display: flex;
     justify-content: center;
@@ -26,6 +26,7 @@ body {
     align-items: center;
     background-image: url("tu-logo.png"); /* Reemplaza "tu-logo.png" con la ruta de tu logo */
     background-size: cover;
+    margin-bottom: 50px;
     
 }
 
@@ -47,7 +48,7 @@ label {
 }
 
 input {
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
     padding: 10px;
     margin-top: 5px;
