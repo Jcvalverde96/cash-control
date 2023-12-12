@@ -201,6 +201,7 @@ section {
     width: 100%;
     background-color: #f5f5f5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   
 
 }
 
@@ -213,6 +214,7 @@ section {
     border-radius: 5px;
     margin-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 50px;
 }
 
 #filter-form label {
@@ -223,7 +225,7 @@ section {
 
 /* Estilo para los elementos select */
 /* Estilo para los elementos select */
-select {
+input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -238,20 +240,11 @@ select {
     transition: border-color 0.3s ease;
 }
 
-select:hover {
+input:hover {
     border-color: #555;
     /* Cambia el color del borde al pasar el mouse */
 }
 
-/* Estilo para los elementos option dentro de select */
-select option {
-    background-color: #fff;
-    /* Cambia el color de fondo según tu preferencia */
-    color: #333;
-    /* Cambia el color del texto según tu preferencia */
-    font-size: 16px;
-    /* Cambia el tamaño de fuente según tu preferencia */
-}
 
 .guardarBoton {
     background-color: #333;
