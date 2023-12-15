@@ -174,35 +174,44 @@ body {
 /*############################# CONTENIDO #################################*/
 /*#######################################################################*/
 
+.titulos {
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 30px;
+}
 
 /* Estilos para el contenido principal */
 .container {
-    flex: 1;
-    display: block;
+    display: flex;
     justify-content: space-between;
-    align-items: stretch;
-    padding: 20px;
-    margin-top: 50px;
+    align-items: flex-start;
+    flex: 1;
+ /* Permite que los elementos flexibles se envuelvan en una nueva línea si no hay espacio suficiente */
+    margin-left: 30px; 
     margin-bottom: 50px;
-
+    margin-right: 30px; 
+    
 }
 
 /* Estilo para la sección "content" */
 .content {
+
+    margin-left: 180px;
     transition: margin-left 0.5s;
     padding: 0;
-    margin-left: 180px;
-
+    margin-top: 40px; 
+ 
 }
 
 
-section {
+/* Estilos para la sección izquierda y derecha */
+.left-section, .right-section {
+    width: calc(50% - 10px);  /* Ancho del 50% con un pequeño espacio entre las secciones */
+    box-sizing: border-box;
+}
 
-    width: 100%;
-    background-color: #f5f5f5;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   
-
+h5{
+    color: grey;
 }
 
 /* Estilo para el formulario de filtro */
