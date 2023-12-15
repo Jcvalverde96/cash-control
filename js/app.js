@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const overlay = document.querySelector(".overlay");
     const loaders = document.querySelectorAll(".loader, .loader2");
 
+
+    
+    ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  LOADER  /////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
     // Función de Loader
 
     setTimeout(function () {
@@ -18,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         content.style.display = "block";
     }, 500);
+
+    
+    ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  FORMATEO DE FECHA  ////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
     // Función para formatear la fecha en formato dd/mm/aa
     function formatearFecha(fecha) {
@@ -29,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return `${dia}/${mes}/${año}`;
     }
 
+    
+    ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  TRANSACCIONES  ////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
     // Array para almacenar transacciones
     const transactions = [];
@@ -129,11 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
         notificationElement.style.display = "none";
     }
 
-
-
-
-
-
     // Modificamos la función agregarTransaccion para utilizar agregarTransaccionConNotificacion
     function agregarTransaccion(tipo, descripcion, cantidad, fecha) {
         agregarTransaccionConNotificacion(tipo, descripcion, cantidad, fecha);
@@ -228,8 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Cambia la propiedad de visibilidad del submenú
         submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
-        submenu.style.backgroundColor = '#ffffff';
-
 
         // Obtiene el elemento del ícono de flecha
         var cogIcon = configLink.querySelector('.material-icons');
@@ -237,5 +245,42 @@ document.addEventListener("DOMContentLoaded", function () {
         // Cambia la clase de rotación del ícono de flecha
         cogIcon.classList.toggle('rotate');
     });
+
+    
+    ///////////////////////////////////////////////////////////////////////////
+    //////////////////////////  confirmacion eliminar transacción  ////////////
+    ///////////////////////////////////////////////////////////////////////////
+
+    window.eliminarTransaccion = function (id) {
+        // Muestra el modal de confirmación
+        const confirmationModal = document.getElementById("confirmationModal");
+        confirmationModal.style.display = "block";
+    
+        // Configura los botones de confirmación y cancelación
+        const confirmDeleteButton = document.getElementById("confirmDelete");
+        const cancelDeleteButton = document.getElementById("cancelDelete");
+    
+        // Agrega un manejador de eventos al botón de confirmación
+        confirmDeleteButton.addEventListener("click", function () {
+            // Filtramos la transacción con el ID especificado
+            const transaccionAEliminar = transactions.find((transaction) => transaction.id === id);
+    
+            // Eliminamos la transacción del array
+            transactions.splice(transactions.indexOf(transaccionAEliminar), 1);
+    
+            // Actualizamos la tabla y los totales
+            updateTransactionTable();
+    
+            // Ocultamos el modal de confirmación
+            confirmationModal.style.display = "none";
+        });
+    
+        // Agrega un manejador de eventos al botón de cancelación
+        cancelDeleteButton.addEventListener("click", function () {
+            // Ocultamos el modal de confirmación sin hacer nada
+            confirmationModal.style.display = "none";
+        });
+    };
+    
     
 });
