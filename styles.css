@@ -1,0 +1,626 @@
+/*#######################################################################*/
+/*############################## LOADER #################################*/
+/*#######################################################################*/
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Asegura que el overlay esté en la parte superior */
+}
+
+.loader {
+    width: 100px;
+    height: 100px;
+    border: solid 4px rgba(231, 231, 231, 0);
+    border-top: solid 5px rgb(241, 68, 68);
+    border-radius: 50%;
+    animation: rotation_51512 1.2s infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes rotation_51512 {
+    70% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.526);
+    }
+
+    90% {
+        box-shadow: 0px 0px 10px 50px rgba(241, 57, 57, 0.04);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: rotate(360deg);
+    }
+}
+
+/*#######################################################################*/
+/*############################## GENERALES ##############################*/
+/*#######################################################################*/
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(73, 73, 73);
+    color: white;
+    padding: 0;
+    z-index: 1000;
+    align-items: center;
+}
+
+.tituloheader{
+
+    margin-left: 235px;
+}
+
+.nomUsuario {
+    cursor: pointer;
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    right: 25px;
+
+}
+
+.iconUsuarioHeader{
+    margin-right: 15px;
+}
+
+.fa-caret-down{
+    margin-left: 15px;
+}
+
+.dropdown-menu {
+    font-weight: bold;
+    align-items: center;
+    text-align: left;
+    display: none;
+    position: fixed;
+    top: 69px;
+    right: 5px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    z-index: 9999;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu a {
+    border: 1px solid #ddd;
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f5f5f5;
+  
+    
+}
+
+.dropdown-menu a i {
+    margin-right: 10px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f9e9e9;
+    font-weight: bold;
+}
+
+.logoct {
+    text-align: center;
+}
+
+.logoct img {
+    display: block;
+    width: 60%;
+    padding: 35px;
+    padding-bottom: 5px;
+}
+
+
+/*#######################################################################*/
+/*############################## CONTENIDO ##############################*/
+/*#######################################################################*/
+
+.content {
+
+    margin-left: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.left-section,
+.right-section {
+    width: calc(50% - 0px);
+    box-sizing: border-box;
+}
+
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 10%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+select {
+    width: 99%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff; 
+    color: #333; 
+    font-size: 16px; 
+    transition: border-color 0.3s ease;
+}
+
+select:hover {
+    border-color: #555; 
+}
+
+
+select option {
+    background-color: #fff; 
+    color: #333; 
+    font-size: 16px; 
+}
+
+.consultarBoton {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    margin-right: 12px;
+    
+}
+
+#transaction-form button:hover {
+    background-color: #555;
+
+}
+
+#expense-form button:hover {
+    background-color: #555;
+
+}
+
+/*#######################################################################*/
+/*############################## TABLAS ##############################*/
+/*#######################################################################*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    background-color: white;
+}
+
+table th {
+    background-color: #333;
+    color: white;
+}
+
+#ingresosTotales {
+    background-color: #333;
+    color: white;
+}
+
+#gastosTotales {
+    background-color: #333;
+    color: white;
+}
+
+
+.delete-button {
+    background-color: #ea4335;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 8px;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.edit-button {
+    background-color: #ebca25;
+    color: #333;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 8px;
+}
+
+.edit-button:hover {
+    background-color: #cfb533;
+}
+
+/* Estilos para los formularios de agregar transacción y gasto */
+.add-section {
+    background-color: white;
+    padding: 30px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+
+
+.add-section h2 {
+    text-align: left;
+}
+
+#transaction-form label,
+#transaction-form input,
+#expense-form label,
+#expense-form input {
+    display: block;
+    margin-bottom: 10px;
+    width: 95%;
+
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/*#######################################################################*/
+/*############################## SIDEBAR ##############################*/
+/*#######################################################################*/
+
+.sidebar {
+    overflow-y: auto;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+    height: 100vh;
+    z-index: 1001;
+
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 3px;
+
+}
+
+.sidebar li {
+    padding: 2px;
+    text-align: left;
+
+}
+
+.sidebar a {
+    /* border-radius: 5px 5px 0 0; */
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    background-color: rgb(68, 68, 68);
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+
+}
+
+/* Aplica margen a los íconos para separarlos de los textos */
+.sidebar a i {
+    margin-right: 10px;
+}
+
+
+.sidebar a:hover {
+    background-color: rgb(255, 204, 84);
+    color: #333;
+    font-weight: bold;
+}
+
+.submenuSeguridad a {
+    background-color: #666;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+    
+}
+
+.submenuPerfil a {
+    background-color: #666;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.submenuSoporte a {
+    background-color: #666;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+  
+    
+}
+
+
+.submenuPerfil li, .submenuSeguridad li , .submenuSoporte li {
+    padding: 2px;
+    
+}
+
+
+
+
+.submenuSeguridad a:hover {
+    background-color: rgb(251, 207, 103);
+    
+
+}
+
+.submenuPerfil a:hover {
+    background-color: rgb(251, 207, 103);
+    
+
+}
+
+.submenuSoporte a:hover {
+    background-color: rgb(251, 207, 103);
+    
+
+}
+
+
+.submenuSeguridad, .submenuPerfil, .submenuSoporte {
+    display: none;
+    align-items: center;
+    text-align: left;
+    background-color: #555;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+
+.sidebar a i.rotate {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
+
+}
+
+.iconPerfil {
+    margin-left: 70px;
+
+}
+
+.iconSeguridad {
+    margin-left: 34px;
+
+}
+
+.iconSoporte {
+    margin-left: 50px;
+
+}
+
+
+/*#######################################################################*/
+/*############################## NOTIFICACIÓN ##############################*/
+/*#######################################################################*/
+
+.notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+.close-button:hover {
+    font-weight: bold;
+}
+
+.notification {
+    font-size: 16px;
+    border: none;
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    background-color: #34a853e1;
+    color: white;
+    padding: 15px;
+    z-index: 1000;
+    max-width: 300px;
+    text-align: right;
+    border-radius: 5px;
+}
+
+.notification:hover {
+
+    background-color: #2da24c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+.close-button {
+    font-size: 25px;
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    font-weight: bold;
+}
+
+
+.close-button:hover {
+    font-weight: bold;
+}
+
+
+/*#######################################################################*/
+/*############################## MODAL CONFIRMACIÓN ##############################*/
+/*#######################################################################*/
+
+/* Estilo para el fondo oscuro transparente */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.modal-button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.confirm-button {
+    background-color: #28a745;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+}
+
+.modal-button:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+    background-color: #1e7e34;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+/*#######################################################################*/
+/*############################## SCROLLBAR ##############################*/
+/*#######################################################################*/
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: rgb(246, 181, 29);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0;
+}
+
+::-moz-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-moz-scrollbar-thumb {
+    border-radius: 0;
+    background: rgb(246, 181, 29);
+}
+
+::-moz-scrollbar-track {
+    border-radius: 0;
+}
