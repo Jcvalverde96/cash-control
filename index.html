@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  Este código es propiedad de [Juan Carlos Valverde Vita].
+  Todos los derechos reservados.
+  
+  Fecha de Creación: [Sept/2023]
+  Última Modificación: [02/11/2023]
+-->
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Control - Gestión de Finanzas Personales</title>
+    <link rel="shortcut icon" href="img/favicon-16x16.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="img/cticon.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+    <header class="header" id="header">
+        <h2 class="tituloheader"><i class="fa fa-home"></i> | Inicio</a></h2>
+        <p class="nomUsuario"><span class="iconUsuarioHeader"><i class="fas fa-user" style='font-size:22px'></i></span><b><span>
+                    Usuario</span></b> <i class='fas fa-caret-down'></i></p>
+        <!--Llamar aquí a bbdd pidiendo el nombre del usuario-->
+    </header>
+
+    <!-- Menú desplegable -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="cambiarContra.html"><i class="fas fa-cog"></i> Cambiar Contraseña</a>
+
+        <a href="login.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+
+    </div>
+
+    <!-- Modal de Confirmación para Eliminar Transacción -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-exclamation-triangle" style="font-size: 24px; color: #FFD700; margin-bottom: 10px;"></i>
+            <h2>Confirmar Eliminación</h2>
+            <p>¿Estás seguro de que deseas eliminar esta transacción?</p>
+            <button id="confirmDelete" class="modal-button confirm-button">Confirmar</button>
+            <button id="cancelDelete" class="modal-button cancel-button">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- NOTIFICACIÓN -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span class="close-button" id="close-button">&times;</span>
+            <p id="notification-message"></p>
+        </div>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="overlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div id="mySidebar" class="sidebar">
+
+        <div class="logoct">
+            <img src="img/Logo-ct.svg" alt="CT Logo">
+        </div>
+
+        <ul class="sidebar-list">
+            <li><a href="index.html" id="inicio"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="resumen.html" id="resumen"><i class="fas fa-chart-pie"></i> Resumen Mensual</a></li>
+            <li>
+
+                <a href="#" id="perfil"><i class="fas fa-user-alt"></i> Perfil <div class="iconPerfil"><i
+                            class='fas fa-angle-right'></i></div></a>
+                <ul class="submenuPerfil">
+                    <li><a href="categorias.html"><i class="fas fa-user-cog"></i> Categorías</a></li>
+                </ul>
+            </li>
+
+            
+            <li>
+                <a href="#" id="soporte"><i class="fas fa-question-circle"></i> Soporte <div class="iconSoporte"><i
+                            class='fas fa-angle-right'></i></div></a>
+
+                <ul class="submenuSoporte">
+                    <li><a href="manualUsuario.html" id="manualUsuario"><i class="fas fa-file-alt"></i>Manual de Usuarios</a></li>
+                </ul>
+
+            </li>
+
+            <li>
+                <a href="#" id="seguridad"><i class="fas fa-lock"></i> Seguridad <div class="iconSeguridad"><i
+                            class='fas fa-angle-right'></i></div></a>
+
+                <ul class="submenuSeguridad">
+                    <li><a href="usuarios.html" id="usuarios"><i class="fas fa-users"></i>Usuarios</a></li>
+                    <li><a href="roles.html" id="roles"><i class="fas fa-users-cog"></i>Roles</a></li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+    </div>
+
+
+    <!-- CONTENIDO -->
+
+    <div class="content">
+
+        <main class="left-section">
+            <!-- Contenido para la parte izquierda de la pantalla -->
+            <div class="add-section" id="add-transaction">
+                <h2><i class='fas fa-coins'></i> Añadir Ingreso</h2>
+                <form id="transaction-form">
+                    <label for="categoriaIngreso"><i class='far fa-list-alt'></i> | Categoría:</label>
+                    <select id="categoriaIngreso" name="categoriaIngreso" required>
+                        <option value="">Selecciona la categoría...</option>
+                        <option value="2023">Nómina</option>
+                        <option value="2023">Otros</option>
+                    </select>
+                    <label for="description"><i class='far fa-file-alt'></i> | Descripción:</label>
+                    <input type="text" id="description" placeholder="Añade una descripción del ingreso...">
+                    <label for="amount"><i class='fas fa-euro-sign'></i> | Cantidad:</label>
+                    <input type="number" id="amount" step="0.01" placeholder="Añade la cantidad del ingreso..."
+                        required>
+                    <label for="transaction-date"><i class='far fa-calendar-alt'></i> | Fecha:</label>
+                    <input type="date" id="transaction-date" required>
+
+                    <div class="botonesFiltro">
+                        <button type="submit" class="consultarBoton" title="Añadir ingreso">
+                            <i class='fa fa-plus'></i> Añadir
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+
+        <main class="right-section">
+            <!-- Contenido para la parte derecha de la pantalla -->
+            <div class="add-section" id="add-expense">
+                <h2><i class='fas fa-coins'></i> Añadir Gasto</h2>
+                <form id="expense-form">
+                    <label for="categoriaGasto"><i class='far fa-list-alt'></i> | Categoría:</label>
+                    <select id="categoriaGasto" name="categoriaGasto" required>
+                        <option value="">Selecciona la categoría...</option>
+
+                    </select>
+                    <label for="expense-description"><i class='far fa-file-alt'></i> | Descripción:</label>
+                    <input type="text" id="expense-description" placeholder="Añade una descripción del gasto...">
+                    <label for="expense-amount"><i class='fas fa-euro-sign'></i> | Cantidad:</label>
+                    <input type="number" id="expense-amount" step="0.01" placeholder="Añade la cantidad del gasto..."
+                        required>
+                    <label for="expense-date"><i class='far fa-calendar-alt'></i> | Fecha:</label>
+                    <input type="date" id="expense-date" required>
+                    <div class="botonesFiltro">
+                        <button type="submit" class="consultarBoton" title="Añadir gasto">
+                            <i class='fa fa-plus'></i> Añadir
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <main class="left-section">
+            <div class="add-section" id="add-expense">
+                <!--En vez de "Mes Actual" debría llamar desde bbdd al mes actual y su resumen-->
+                <h2><i class='fas fa-chart-line'></i> Mes actual</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="ingresosTotales">Ingresos</th>
+                            <th id="gastosTotales">Gastos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="total-ingresos">0 €</td>
+                            <td id="total-gastos">0 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ahorro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="ahorro">0 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </main>
+
+        <main class="left-section">
+            <div class="add-section" id="add-expense">
+
+                <h2><i class='fas fa-receipt'></i> Lista de Transacciones</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transaction-list">
+                        <!-- Filas de transacciones -->
+                        <tr>
+                            <td id="transacciones-tipo">-</td>
+                            <td id="transacciones-cat">-</td>
+                            <td id="transacciones-desc">-</td>
+                            <td id="transacciones-cant">-</td>
+                            <td id="transacciones-fecha">-</td>
+                            <td id="transacciones-acc">-</td>
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+        </main>
+
+    </div>
+
+    <script src="js\app.js"></script>
+
+</body>
+
+</html>
